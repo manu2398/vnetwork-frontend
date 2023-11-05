@@ -1,0 +1,44 @@
+.loader_container {
+  position: fixed;
+  inset: 0;
+  background-color: #0008;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid rgb(84, 83, 83);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.8s linear infinite;
+}
+
+.toast_container {
+  display: flex !important;
+  justify-content: space-between;
+  padding: 5px 10px;
+  align-items: center;
+  min-width: 180px;
+  z-index: 50;
+}
+
+.toast_container span {
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* https://dev.to/kirteshbansal/spinner-loader-in-react-using-css-458h */

@@ -1,0 +1,57 @@
+.comment_input {
+  display: flex;
+  align-items: center;
+}
+
+.comment_input input {
+  flex: 1;
+  background-color: #f7f7f7;
+  border: none;
+  outline: none;
+  overflow: auto;
+}
+
+.comment_input .postBtn {
+  border: none;
+  outline: none;
+  background-color: #f7f7f7;
+  color: blue;
+  font-weight: 600;
+}
+/* ----display comments */
+
+.comments {
+  padding: 10px 25px;
+}
+
+.comment_card .comment_content {
+  background-color: #eee;
+  padding: 7px;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment_card .comment_content .readMore {
+  cursor: pointer;
+  color: crimson;
+}
+
+.like_reply span {
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.comment_card .comment_content .dropdown-menu {
+  position: absolute;
+  right: 0;
+  left: inherit;
+}
+
+.comment_card .comment_content textarea {
+  width: 100%;
+  outline: none;
+  border: none;
+}

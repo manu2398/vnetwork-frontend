@@ -1,0 +1,146 @@
+.header {
+  width: 100%;
+  min-height: 70px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  box-shadow: 0 0 10px #ddd;
+}
+
+.header .navbar {
+  width: 100%;
+  height: 100%;
+  background: #fff !important;
+}
+.header .logo h1 {
+  font-size: 2rem;
+}
+
+/* ----------- Header Menu ---------- */
+.header .menu li {
+  opacity: 1;
+}
+.header .menu li.active {
+  opacity: 1;
+}
+
+.header .menu .material-icons {
+  font-size: 30px;
+}
+
+.header .menu .dropdown-menu {
+  position: absolute;
+  left: inherit !important;
+  right: 0;
+}
+.header .menu label {
+  cursor: pointer;
+}
+
+.header .menu .notify_length {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* ----------- Header Search ---------- */
+
+.search_form {
+  position: relative;
+}
+
+#search {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  min-width: 250px;
+  width: 100%;
+  outline: none;
+  text-indent: 5px;
+  border-radius: 3px;
+}
+
+.search_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.material-icons {
+  font-size: 14px;
+}
+
+.clear {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: crimson;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ----------- Header Search ---------- */
+.header .search_form .users {
+  position: absolute;
+  width: 100%;
+  min-width: 250px;
+  background: #fafafa;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+  margin-top: 3px;
+  z-index: 999;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+}
+
+/* ----------- Responsive ---------- */
+/* 
+@media (max-width: 768px) {
+  .menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    box-shadow: 0 0 10px #ddd;
+    background-color: #fff;
+  }
+  .menu .navbar-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .dropdown-menu {
+    bottom: 100%;
+    top: auto;
+  }
+
+  .search_form {
+    width: 100%;
+  }
+
+  .logo {
+    margin: auto;
+  }
+  .header .logo h1 {
+    font-size: 1.5rem;
+  }
+} */
