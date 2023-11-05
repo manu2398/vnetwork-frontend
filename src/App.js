@@ -15,7 +15,7 @@ import PrivateRouter from "./customRouter/PrivateRouter";
 import StatusModal from "./components/StatusModal";
 
 import io from "socket.io-client";
-import { SOCKET } from "./store/reducers/socketReducer";
+// import { SOCKET } from "./store/reducers/socketReducer";
 import SocketClient from "./SocketClient";
 import { getNotifies } from "./store/reducers/notifyReducer";
 
@@ -26,10 +26,10 @@ function App() {
   useEffect(() => {
     dispatch(refreshToken());
 
-    const socket = io();
-    dispatch({ type: SOCKET, payload: socket });
+    // const socket = io();
+    // dispatch({ type: SOCKET, payload: socket });
 
-    return () => socket.close();
+    // return () => socket.close();
   }, [dispatch]);
 
   useEffect(() => {
