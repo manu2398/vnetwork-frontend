@@ -13,7 +13,9 @@ export const login = (data) => async (dispatch) => {
       type: AUTH,
       payload: { user: res.data },
     });
+
     localStorage.setItem("firstLogin", true);
+    localStorage.setItem("token", JSON.stringify(res.data.access_token));
 
     dispatch({
       type: ALERT,
@@ -36,6 +38,7 @@ export const register = (data) => async (dispatch) => {
       payload: { user: res.data },
     });
     localStorage.setItem("firstLogin", true);
+    localStorage.setItem("token", JSON.stringify(res.data.access_token));
 
     dispatch({
       type: ALERT,
@@ -53,6 +56,7 @@ export const logout = () => async (dispatch) => {
   try {
     dispatch({ type: ALERT, payload: { loading: true } });
     localStorage.removeItem("firstLogin");
+    localStorage.removeItem("token");
     await postDataAPI("logout");
 
     dispatch({
@@ -72,9 +76,11 @@ export const refreshToken = () => async (dispatch) => {
   const firstLogin = localStorage.getItem("firstLogin");
 
   if (firstLogin) {
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log("mytoooo", token);
     dispatch({ type: ALERT, payload: { loading: true } });
     try {
-      const res = await postDataAPI("refreshtoken");
+      const res = await postDataAPI("refreshtoken", null, token);
       dispatch({
         type: AUTH,
         payload: { user: res.data },
