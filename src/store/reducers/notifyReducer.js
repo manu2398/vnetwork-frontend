@@ -41,7 +41,7 @@ export const removeNotify =
     try {
       const res = await deleteDataAPI(
         `notify/${msg.id}?url=${msg.url}`,
-        auth.user.token
+        auth.user.access_token
       );
 
       dispatch({ type: DELETE_NOTIFY, payload: res.data.notify });

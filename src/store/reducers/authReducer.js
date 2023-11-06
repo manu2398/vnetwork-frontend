@@ -77,7 +77,7 @@ export const refreshToken = () => async (dispatch) => {
 
   if (firstLogin) {
     const token = JSON.parse(localStorage.getItem("token"));
-    console.log("mytoooo", token);
+    console.log(token);
     dispatch({ type: ALERT, payload: { loading: true } });
     try {
       const res = await postDataAPI("refreshtoken", null, token);

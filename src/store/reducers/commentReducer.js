@@ -22,7 +22,7 @@ export const createComment =
         postUserId: post.user._id,
       };
 
-      const res = await postDataAPI("comment", data, auth.token);
+      const res = await postDataAPI("comment", data, auth.user.access_token);
 
       const newData = { ...res.data.newComment, user: auth.user };
       const newPost = { ...post, comments: [...post.comments, newData] };
@@ -64,7 +64,7 @@ export const updateComment =
       await patchDataAPI(
         `comment/${comment._id}`,
         { content },
-        auth.user.token
+        auth.user.access_token
       );
     } catch (err) {
       dispatch({ type: ALERT, payload: { error: err.response.data } });
@@ -83,7 +83,11 @@ export const likeComment =
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
 
     try {
-      await patchDataAPI(`comment/${comment._id}/like`, null, auth.token);
+      await patchDataAPI(
+        `comment/${comment._id}/like`,
+        null,
+        auth.user.access_token
+      );
     } catch (err) {
       dispatch({ type: ALERT, payload: { error: err.response.data } });
     }
@@ -104,7 +108,11 @@ export const unlikeComment =
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
 
     try {
-      await patchDataAPI(`comment/${comment._id}/unlike`, null, auth.token);
+      await patchDataAPI(
+        `comment/${comment._id}/unlike`,
+        null,
+        auth.user.access_token
+      );
     } catch (err) {
       dispatch({ type: ALERT, payload: { error: err.response.data } });
     }
@@ -131,7 +139,7 @@ export const commentRemove =
 
     try {
       tobeDeletedArr.forEach((item) => {
-        deleteDataAPI(`comment/${item._id}`, auth.user.token);
+        deleteDataAPI(`comment/${item._id}`, auth.user.access_token);
 
         const msg = {
           id: item._id,

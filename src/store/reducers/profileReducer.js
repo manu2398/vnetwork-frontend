@@ -84,7 +84,7 @@ export const updateProfileUser =
           ...userData,
           avatar: avatar ? media[0].url : auth.user.avatar,
         },
-        auth.token
+        auth.user.access_token
       );
 
       dispatch({
@@ -125,7 +125,11 @@ export const follow =
     dispatch({ type: AUTH, payload: { user: authUser } });
 
     try {
-      await patchDataAPI(`user/follow/${user.username}`, null, auth.token);
+      await patchDataAPI(
+        `user/follow/${user.username}`,
+        null,
+        auth.user.access_token
+      );
 
       // notify
       const msg = {
@@ -162,7 +166,11 @@ export const unFollow =
     dispatch({ type: AUTH, payload: { user: authUser } });
 
     try {
-      await patchDataAPI(`user/un-follow/${user.username}`, null, auth.token);
+      await patchDataAPI(
+        `user/un-follow/${user.username}`,
+        null,
+        auth.user.access_token
+      );
 
       // notify
       const msg = {

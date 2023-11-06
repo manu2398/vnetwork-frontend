@@ -38,7 +38,7 @@ export const createPost =
       const res = await postDataAPI(
         "posts",
         { content, alias, link, images: media },
-        auth.token
+        auth.user.access_token
       );
 
       dispatch({ type: POST_TYPES.CREATE_POST, payload: res.data.newPost });
@@ -99,7 +99,7 @@ export const updatePost =
       const res = await patchDataAPI(
         `posts/${status._id}`,
         { content, alias, link, images: [...oldImages, ...media] },
-        auth.token
+        auth.user.access_token
       );
 
       dispatch({ type: POST_TYPES.UPDATE_POST, payload: res.data.newPost });
@@ -131,7 +131,11 @@ export const likePost =
     dispatch(createNotify({ msg, auth, socket }));
 
     try {
-      await patchDataAPI(`posts-like/${post._id}`, null, auth.token);
+      await patchDataAPI(
+        `posts-like/${post._id}`,
+        null,
+        auth.user.access_token
+      );
     } catch (err) {
       dispatch({ type: ALERT, payload: { error: err.response.data } });
     }
@@ -147,8 +151,14 @@ export const unLikePost =
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     socket.emit("unlikePost", newPost);
 
+    console.log(auth);
+
     try {
-      await patchDataAPI(`posts-unlike/${post._id}`, null, auth.token);
+      await patchDataAPI(
+        `posts-unlike/${post._id}`,
+        null,
+        auth.user.access_token
+      );
 
       const msg = {
         id: auth.user._id,
@@ -168,7 +178,7 @@ export const getPost =
   async (dispatch) => {
     if (detailPost.every((post) => post._id !== id)) {
       try {
-        const res = await getDataAPI(`post/${id}`, auth.user.token);
+        const res = await getDataAPI(`post/${id}`, auth.user.access_token);
         dispatch({ type: POST_TYPES.GET_POST, payload: res.data.post });
       } catch (err) {
         dispatch({ type: ALERT, payload: { error: err.response.data } });
@@ -180,8 +190,9 @@ export const deletePost =
   ({ post, auth, socket }) =>
   async (dispatch) => {
     dispatch({ type: POST_TYPES.DELETE_POST, payload: post });
+    console.log(auth);
     try {
-      await deleteDataAPI(`post/${post._id}`, auth.user.token);
+      await deleteDataAPI(`post/${post._id}`, auth.user.access_token);
 
       const msg = {
         id: post._id,
